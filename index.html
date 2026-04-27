@@ -1,269 +1,339 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leasingübersicht · Elektrofahrzeuge 2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leasingübersicht · Elektrofahrzeuge 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: #f5f4f1;
-      color: #1a1a1a;
-      font-family: 'Sora', sans-serif;
-      font-weight: 400;
-      min-height: 100vh;
-      padding: 60px 32px 80px;
-    }
+body {
+background: #f5f4f1;
+color: #1a1a1a;
+font-family: 'Sora', sans-serif;
+font-weight: 400;
+min-height: 100vh;
+padding: 60px 32px 80px;
+}
 
-    /* HEADER */
-    header {
-      max-width: 860px;
-      margin: 0 auto 48px;
-    }
+/* HEADER */
+header {
+max-width: 860px;
+margin: 0 auto 48px;
+}
 
-    .label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 10px;
-    }
+.label {
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: #888;
+margin-bottom: 10px;
+}
 
-    h1 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      color: #111;
-    }
+h1 {
+font-size: clamp(1.6rem, 4vw, 2.4rem);
+font-weight: 600;
+letter-spacing: -0.02em;
+line-height: 1.15;
+color: #111;
+}
 
-    h1 span {
-      color: #aaa;
-      font-weight: 300;
-    }
+h1 span {
+color: #aaa;
+font-weight: 300;
+}
 
-    /* CARDS */
-    .cards {
-      max-width: 860px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+/* CARDS */
+.cards {
+max-width: 860px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
 
-    .card {
-      background: #fff;
-      border-radius: 0;
-      padding: 28px 32px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 24px;
-      opacity: 0;
-      animation: up 0.4s ease forwards;
-    }
+.card {
+background: #fff;
+border-radius: 0;
+padding: 28px 32px;
+display: grid;
+grid-template-columns: 1fr auto;
+align-items: center;
+gap: 24px;
+opacity: 0;
+animation: up 0.4s ease forwards;
+}
 
-    .card:first-child  { border-radius: 12px 12px 0 0; animation-delay: 0.05s; }
-    .card:last-child   { border-radius: 0 0 12px 12px; animation-delay: 0.25s; }
-    .card:nth-child(2) { animation-delay: 0.1s; }
-    .card:nth-child(3) { animation-delay: 0.15s; }
+.card:first-child { border-radius: 12px 12px 0 0; }
+.card:last-child { border-radius: 0 0 12px 12px; }
 
-    .left { display: flex; flex-direction: column; gap: 6px; }
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.10s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.20s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.30s; }
 
-    .car-brand {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #999;
-      font-weight: 500;
-    }
+.left { display: flex; flex-direction: column; gap: 6px; }
 
-    .car-name {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #111;
-      letter-spacing: -0.01em;
-    }
+.car-brand {
+font-size: 11px;
+text-transform: uppercase;
+letter-spacing: 0.12em;
+color: #999;
+font-weight: 500;
+}
 
-    .car-variant {
-      font-size: 12px;
-      color: #aaa;
-      line-height: 1.5;
-    }
+.car-name {
+font-size: 1.15rem;
+font-weight: 600;
+color: #111;
+letter-spacing: -0.01em;
+}
 
-    .tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
+.car-variant {
+font-size: 12px;
+color: #aaa;
+line-height: 1.5;
+}
 
-    .tag {
-      font-size: 11px;
-      color: #666;
-      background: #f5f4f1;
-      border-radius: 4px;
-      padding: 3px 8px;
-    }
+.tags {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+margin-top: 4px;
+}
 
-    .right {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 10px;
-    }
+.tag {
+font-size: 11px;
+color: #666;
+background: #f5f4f1;
+border-radius: 4px;
+padding: 3px 8px;
+}
 
-    .price {
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      color: #111;
-      white-space: nowrap;
-    }
+.tag-green {
+background: #e6f4ea;
+color: #1e7e34;
+}
 
-    .price-note {
-      font-size: 11px;
-      color: #aaa;
-    }
+.tag-blue {
+background: #e8f0fe;
+color: #1a56db;
+}
 
-    .link {
-      font-size: 11px;
-      color: #666;
-      text-decoration: none;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 1px;
-      transition: color 0.15s, border-color 0.15s;
-      white-space: nowrap;
-    }
+.right {
+text-align: right;
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+gap: 10px;
+}
 
-    .link:hover { color: #111; border-color: #999; }
+.price {
+font-size: 1.8rem;
+font-weight: 600;
+letter-spacing: -0.03em;
+color: #111;
+white-space: nowrap;
+}
 
-    /* FOOTER */
-    footer {
-      max-width: 860px;
-      margin: 32px auto 0;
-      font-size: 11px;
-      color: #bbb;
-    }
+.price-note {
+font-size: 11px;
+color: #aaa;
+}
 
-    @keyframes up {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+.link {
+font-size: 11px;
+color: #666;
+text-decoration: none;
+border-bottom: 1px solid #ddd;
+padding-bottom: 1px;
+transition: color 0.15s, border-color 0.15s;
+white-space: nowrap;
+}
 
-    @media (max-width: 560px) {
-      body { padding: 40px 16px 60px; }
-      .card { grid-template-columns: 1fr; gap: 16px; }
-      .right { align-items: flex-start; text-align: left; }
-    }
-  </style>
+.link:hover { color: #111; border-color: #999; }
+
+.link-disabled {
+font-size: 11px;
+color: #ccc;
+cursor: default;
+}
+
+/* FOOTER */
+footer {
+max-width: 860px;
+margin: 32px auto 0;
+font-size: 11px;
+color: #bbb;
+}
+
+@keyframes up {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 560px) {
+body { padding: 40px 16px 60px; }
+.card { grid-template-columns: 1fr; gap: 16px; }
+.right { align-items: flex-start; text-align: left; }
+}
+</style>
 </head>
 <body>
 
 <header>
-  <p class="label">Gewerbe · Null-Leasing · zzgl. MwSt.</p>
-  <h1>Elektrofahrzeuge 2026 <span>— Leasingübersicht</span></h1>
+<p class="label">Gewerbe · Null-Leasing · zzgl. MwSt.</p>
+<h1>Elektrofahrzeuge 2026 <span>— Leasingübersicht</span></h1>
 </header>
 
 <div class="cards">
 
-  <div class="card">
-    <div class="left">
-      <p class="car-brand">Cupra</p>
-      <p class="car-name">Tavascan Endurance</p>
-      <p class="car-variant">210 kW (286 PS) · Lagerwagen (Sofort!!)</p>
-      <div class="tags">
-        <span class="tag">48 Monate</span>
-        <span class="tag">15.000 km/Jahr</span>
-        <span class="tag">Faktor 0,71</span>
-        <span class="tag" style="background:#e6f4ea; color:#1e7e34;">Sofort verfügbar</span>
-      </div>
-    </div>
-    <div class="right">
-      <div>
-        <p class="price">319,00 €</p>
-        <p class="price-note">mtl. zzgl. MwSt.</p>
-      </div>
-      <a class="link" href="https://www.null-leasing.com/cupra-leasing/angebote/452040432?lsml=%3A15000&lst=c&lstm=%3A48&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
-    </div>
-  </div>
+<!-- 1. Cupra Born 265 € -->
+<div class="card">
+<div class="left">
+<p class="car-brand">Cupra</p>
+<p class="car-name">Born</p>
+<p class="car-variant">MJ27 inkl. Allwetter</p>
+<div class="tags">
+<span class="tag">36 Monate</span>
+<span class="tag">15.000 km/Jahr</span>
+<span class="tag">Faktor 0,78</span>
+<span class="tag">Loyalisierung</span>
+<span class="tag">In 3 Monaten</span>
+</div>
+</div>
+<div class="right">
+<div>
+<p class="price">265,00 €</p>
+<p class="price-note">mtl. zzgl. MwSt.</p>
+</div>
+<a class="link" href="https://www.null-leasing.com/cupra-leasing/angebote/446832129?lsml=%3A15000&lst=c&lstm=%3A36&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+</div>
+</div>
 
-  <div class="card">
-    <div class="left">
-      <p class="car-brand">Hyundai</p>
-      <p class="car-name">IONIQ 5 FL (MY26)</p>
-      <p class="car-variant">63 kWh · 125 kW (170 PS) · 2WD · Wärmepumpe</p>
-      <div class="tags">
-        <span class="tag">48 Monate</span>
-        <span class="tag">15.000 km/Jahr</span>
-        <span class="tag">Faktor 0,70</span>
-        <span class="tag" style="background:#e6f4ea; color:#1e7e34;">Sofort verfügbar</span>
-      </div>
-    </div>
-    <div class="right">
-      <div>
-        <p class="price">275,95 €</p>
-        <p class="price-note">mtl. zzgl. MwSt.</p>
-      </div>
-      <a class="link" href="https://www.null-leasing.com/hyundai-leasing/angebote/452674098?lsml=%3A15000&lst=c&lstm=%3A48&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
-    </div>
-  </div>
+<!-- 2. Cupra Raval 269 € -->
+<div class="card">
+<div class="left">
+<p class="car-brand">Cupra</p>
+<p class="car-name">Raval</p>
+<p class="car-variant">Endurance Edition Dynamic · 155 kW (211 PS)</p>
+<div class="tags">
+<span class="tag">36 Monate</span>
+<span class="tag">15.000 km/Jahr</span>
+<span class="tag">Faktor 0,86</span>
+<span class="tag">In 4 Monaten</span>
+</div>
+</div>
+<div class="right">
+<div>
+<p class="price">269,00 €</p>
+<p class="price-note">mtl. zzgl. MwSt.</p>
+</div>
+<span class="link-disabled">Kein Link verfügbar</span>
+</div>
+</div>
 
-  <div class="card">
-    <div class="left">
-      <p class="car-brand">Cupra</p>
-      <p class="car-name">Born</p>
-      <p class="car-variant">MJ27 inkl. Allwetter</p>
-      <div class="tags">
-        <span class="tag">36 Monate</span>
-        <span class="tag">15.000 km/Jahr</span>
-        <span class="tag">Faktor 0,78</span>
-        <span class="tag">Loyalisierung</span>
-        <span class="tag">In 3 Monaten</span>
-      </div>
-    </div>
-    <div class="right">
-      <div>
-        <p class="price">265,00 €</p>
-        <p class="price-note">mtl. zzgl. MwSt.</p>
-      </div>
-      <a class="link" href="https://www.null-leasing.com/cupra-leasing/angebote/446832129?lsml=%3A15000&lst=c&lstm=%3A36&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
-    </div>
-  </div>
+<!-- 3. VW ID.4 274 € -->
+<div class="card">
+<div class="left">
+<p class="car-brand">Volkswagen</p>
+<p class="car-name">ID.4</p>
+<p class="car-variant">Pure 58 kWh · 1-Gang DSG · Kamera · Aktion</p>
+<div class="tags">
+<span class="tag">24 Monate</span>
+<span class="tag">15.000 km/Jahr</span>
+<span class="tag">Faktor 0,73</span>
+<span class="tag tag-blue">Günstigste Laufzeit</span>
+<span class="tag">In 4 Monaten</span>
+</div>
+</div>
+<div class="right">
+<div>
+<p class="price">274,00 €</p>
+<p class="price-note">mtl. zzgl. MwSt.</p>
+</div>
+<span class="link-disabled">Kein Link verfügbar</span>
+</div>
+</div>
 
-  <div class="card">
-    <div class="left">
-      <p class="car-brand">Ford</p>
-      <p class="car-name">Capri</p>
-      <p class="car-variant">Extended Range 79 kWh · RWD · Select</p>
-      <div class="tags">
-        <span class="tag">36 Monate</span>
-        <span class="tag">15.000 km/Jahr</span>
-        <span class="tag">Faktor 0,64</span>
-        <span class="tag">In 4 Monaten</span>
-      </div>
-    </div>
-    <div class="right">
-      <div>
-        <p class="price">276,00 €</p>
-        <p class="price-note">mtl. zzgl. MwSt.</p>
-      </div>
-      <a class="link" href="https://www.null-leasing.com/ford-leasing/angebote/443542003?lsml=%3A15000&lst=c&lstm=%3A36&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
-    </div>
-  </div>
+<!-- 4. Ford Capri 276 € -->
+<div class="card">
+<div class="left">
+<p class="car-brand">Ford</p>
+<p class="car-name">Capri</p>
+<p class="car-variant">Extended Range 79 kWh · RWD · Select</p>
+<div class="tags">
+<span class="tag">36 Monate</span>
+<span class="tag">15.000 km/Jahr</span>
+<span class="tag">Faktor 0,64</span>
+<span class="tag">In 4 Monaten</span>
+</div>
+</div>
+<div class="right">
+<div>
+<p class="price">276,00 €</p>
+<p class="price-note">mtl. zzgl. MwSt.</p>
+</div>
+<a class="link" href="https://www.null-leasing.com/ford-leasing/angebote/443542003?lsml=%3A15000&lst=c&lstm=%3A36&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+</div>
+</div>
+
+<!-- 5. Hyundai IONIQ 5 301 € -->
+<div class="card">
+<div class="left">
+<p class="car-brand">Hyundai</p>
+<p class="car-name">IONIQ 5 FL (MY26)</p>
+<p class="car-variant">63 kWh · 125 kW (170 PS) · 2WD · Wärmepumpe</p>
+<div class="tags">
+<span class="tag">36 Monate</span>
+<span class="tag">15.000 km/Jahr</span>
+<span class="tag">Faktor 0,76</span>
+<span class="tag tag-green">Sofort verfügbar</span>
+</div>
+</div>
+<div class="right">
+<div>
+<p class="price">301,00 €</p>
+<p class="price-note">mtl. zzgl. MwSt.</p>
+</div>
+<a class="link" href="https://www.null-leasing.com/hyundai-leasing/angebote/452674098?lsml=%3A15000&lst=c&lstm=%3A36&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+</div>
+</div>
+
+<!-- 6. Cupra Tavascan 319 € -->
+<div class="card">
+<div class="left">
+<p class="car-brand">Cupra</p>
+<p class="car-name">Tavascan Endurance</p>
+<p class="car-variant">210 kW (286 PS) · Lagerwagen</p>
+<div class="tags">
+<span class="tag">48 Monate</span>
+<span class="tag">15.000 km/Jahr</span>
+<span class="tag">Faktor 0,71</span>
+<span class="tag tag-green">Sofort verfügbar</span>
+</div>
+</div>
+<div class="right">
+<div>
+<p class="price">319,00 €</p>
+<p class="price-note">mtl. zzgl. MwSt.</p>
+</div>
+<a class="link" href="https://www.null-leasing.com/cupra-leasing/angebote/452040432?lsml=%3A15000&lst=c&lstm=%3A48&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+</div>
+</div>
 
 </div>
 
 <footer>
-  <p>Quelle: null-leasing.com &nbsp;·&nbsp; Gewerbekunden zzgl. MwSt. &nbsp;·&nbsp; Stand: <span id="d"></span></p>
+<p>Quelle: null-leasing.com &nbsp;·&nbsp; Gewerbekunden zzgl. MwSt. &nbsp;·&nbsp; Stand: <span id="d"></span></p>
 </footer>
 
 <script>
-  document.getElementById('d').textContent =
-    new Intl.DateTimeFormat('de-DE',{day:'2-digit',month:'long',year:'numeric'}).format(new Date());
+document.getElementById('d').textContent =
+new Intl.DateTimeFormat('de-DE',{day:'2-digit',month:'long',year:'numeric'}).format(new Date());
 </script>
 </body>
 </html>
