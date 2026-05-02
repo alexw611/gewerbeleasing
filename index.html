@@ -21,6 +21,8 @@ h1 span { color: #aaa; font-weight: 300; }
 .card:nth-child(3) { animation-delay: 0.15s; }
 .card:nth-child(4) { animation-delay: 0.20s; }
 .card:nth-child(5) { animation-delay: 0.25s; }
+.card:nth-child(6) { animation-delay: 0.30s; }
+.card:nth-child(7) { animation-delay: 0.35s; }
 .left { display: flex; flex-direction: column; gap: 6px; }
 .car-brand { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #999; font-weight: 500; }
 .car-name { font-size: 1.15rem; font-weight: 600; color: #111; letter-spacing: -0.01em; }
@@ -28,6 +30,7 @@ h1 span { color: #aaa; font-weight: 300; }
 .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
 .tag { font-size: 11px; color: #666; background: #f5f4f1; border-radius: 4px; padding: 3px 8px; }
 .tag-green { background: #e6f4ea; color: #1e7e34; }
+.tag-amber { background: #fff8e1; color: #b06000; }
 .right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .price { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.03em; color: #111; white-space: nowrap; }
 .price-note { font-size: 11px; color: #aaa; }
@@ -83,26 +86,45 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-  <!-- 3. VW ID.4 274 € -->
+  <!-- 3. Hyundai IONIQ 5 275,95 € -->
   <div class="card">
     <div class="left">
-      <p class="car-brand">Volkswagen</p>
-      <p class="car-name">ID.4</p>
-      <p class="car-variant">Pure 58 kWh · 1-Gang DSG · Kamera · Aktion</p>
+      <p class="car-brand">Hyundai</p>
+      <p class="car-name">IONIQ 5</p>
+      <p class="car-variant">FL (MY26) 63 kWh 2WD · 125 kW (170 PS) · Wärmepumpe</p>
       <div class="tags">
-        <span class="tag">24 Monate</span>
+        <span class="tag">48 Monate</span>
         <span class="tag">15.000 km/Jahr</span>
-        <span class="tag">Faktor 0,73</span>
-        <span class="tag">In 4 Monaten</span>
+        <span class="tag">Faktor 0,70</span>
+        <span class="tag tag-green">Sofort verfügbar</span>
       </div>
     </div>
     <div class="right">
-      <div><p class="price">274,00 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
-      <a class="link" href="https://www.null-leasing.com/volkswagen-leasing/angebote/451898046?lst=c&lsml=15000&lstm=24" target="_blank" rel="noopener">Zum Angebot →</a>
+      <div><p class="price">275,95 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
+      <a class="link" href="https://www.null-leasing.com/hyundai-leasing/angebote/452674098?lsml=%3A15000&lst=c&lstm=%3A48&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
     </div>
   </div>
 
-  <!-- 4. Cupra Tavascan 319 € -->
+  <!-- 4. BMW iX1 300 € -->
+  <div class="card">
+    <div class="left">
+      <p class="car-brand">BMW</p>
+      <p class="car-name">iX1 eDrive20</p>
+      <p class="car-variant">150 kW (204 PS)</p>
+      <div class="tags">
+        <span class="tag">27 Monate</span>
+        <span class="tag">15.000 km/Jahr</span>
+        <span class="tag">Faktor 0,72</span>
+        <span class="tag">Ab Nov. 2026</span>
+      </div>
+    </div>
+    <div class="right">
+      <div><p class="price">300,00 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
+      <a class="link" href="https://www.null-leasing.com/bmw-leasing/angebote/453986156?lsml=%3A15000&lst=c&lstm=%3A27&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+    </div>
+  </div>
+
+  <!-- 5. Cupra Tavascan 319 € -->
   <div class="card">
     <div class="left">
       <p class="car-brand">Cupra</p>
@@ -121,7 +143,26 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-  <!-- 5. BMW i4 357 € -->
+  <!-- 6. Audi A6 e-tron 338 € -->
+  <div class="card">
+    <div class="left">
+      <p class="car-brand">Audi</p>
+      <p class="car-name">A6 e-tron Sportback</p>
+      <p class="car-variant">210 kW (286 PS)</p>
+      <div class="tags">
+        <span class="tag">24 Monate</span>
+        <span class="tag">15.000 km/Jahr</span>
+        <span class="tag">Faktor 0,64</span>
+        <span class="tag">In 3 Monaten</span>
+      </div>
+    </div>
+    <div class="right">
+      <div><p class="price">338,00 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
+      <a class="link" href="https://www.null-leasing.com/audi-leasing/angebote/450875410?lsml=%3A15000&lst=c&lstm=%3A24&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+    </div>
+  </div>
+
+  <!-- 7. BMW i4 357 € -->
   <div class="card">
     <div class="left">
       <p class="car-brand">BMW</p>
