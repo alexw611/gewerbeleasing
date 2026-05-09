@@ -8,20 +8,79 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: #f5f4f1; color: #1a1a1a; font-family: 'Sora', sans-serif; font-weight: 400; min-height: 100vh; padding: 60px 32px 80px; }
-header { max-width: 860px; margin: 0 auto 48px; }
+header { max-width: 860px; margin: 0 auto 32px; }
 .label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #888; margin-bottom: 10px; }
 h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; color: #111; }
 h1 span { color: #aaa; font-weight: 300; }
+
+/* ── Sort bar ── */
+.sort-bar {
+  max-width: 860px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.sort-label {
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+.sort-btn {
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: #888;
+  background: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.sort-btn:hover { color: #333; background: #ececea; }
+.sort-btn.active { background: #1a1a1a; color: #fff; }
+.sort-group {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.sort-group-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #888;
+  white-space: nowrap;
+  padding: 6px 8px 6px 12px;
+  pointer-events: none;
+}
+.sort-btn-icon {
+  padding: 6px 9px;
+  border-left: 1px solid #f0f0f0;
+  border-radius: 0;
+}
+
+/* ── Cards ── */
 .cards { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
-.card { background: #fff; border-radius: 0; padding: 28px 32px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; opacity: 0; animation: up 0.4s ease forwards; }
-.card:first-child { border-radius: 12px 12px 0 0; }
-.card:last-child  { border-radius: 0 0 12px 12px; }
-.card:nth-child(1) { animation-delay: 0.05s; }
-.card:nth-child(2) { animation-delay: 0.10s; }
-.card:nth-child(3) { animation-delay: 0.15s; }
-.card:nth-child(4) { animation-delay: 0.20s; }
-.card:nth-child(5) { animation-delay: 0.25s; }
-.card:nth-child(6) { animation-delay: 0.30s; }
+.card {
+  background: #fff;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  border-radius: 0;
+}
 .left { display: flex; flex-direction: column; gap: 6px; }
 .car-brand  { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #999; font-weight: 500; }
 .car-name   { font-size: 1.15rem; font-weight: 600; color: #111; letter-spacing: -0.01em; }
@@ -37,19 +96,37 @@ h1 span { color: #aaa; font-weight: 300; }
 .link { font-size: 11px; color: #666; text-decoration: none; border-bottom: 1px solid #ddd; padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; white-space: nowrap; }
 .link:hover { color: #111; border-color: #999; }
 footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
-@keyframes up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@media (max-width: 560px) { body { padding: 40px 16px 60px; } .card { grid-template-columns: 1fr; gap: 16px; } .right { align-items: flex-start; text-align: left; } }
+
+@media (max-width: 560px) {
+  body { padding: 40px 16px 60px; }
+  .card { grid-template-columns: 1fr; gap: 16px; }
+  .right { align-items: flex-start; text-align: left; }
+}
 </style>
 </head>
 <body>
+
 <header>
   <p class="label">Gewerbe · Null-Leasing · zzgl. MwSt.</p>
   <h1>Elektrofahrzeuge 2026 <span>— Leasingübersicht</span></h1>
 </header>
-<div class="cards">
 
-  <!-- 1. Ford Capri · Leasingfaktor 0,64 -->
-  <div class="card">
+<div class="sort-bar">
+  <span class="sort-label">Sortieren</span>
+  <button class="sort-btn active" data-key="faktor" data-dir="asc">Leasingfaktor ↑</button>
+  <div class="sort-group">
+    <span class="sort-group-label">Leasingrate</span>
+    <button class="sort-btn sort-btn-icon" data-key="rate" data-dir="asc">↑</button>
+    <button class="sort-btn sort-btn-icon" data-key="rate" data-dir="desc">↓</button>
+  </div>
+  <button class="sort-btn" data-key="avail" data-dir="asc">Verfügbarkeit ↑</button>
+</div>
+
+<div class="cards" id="cardList">
+
+  <!-- data-faktor, data-rate, data-avail: 0=sofort, 1=<2mo, 2=2-5mo, 3=>5mo -->
+
+  <div class="card" data-faktor="0.64" data-rate="276.00" data-avail="3">
     <div class="left">
       <p class="car-brand">Ford</p>
       <p class="car-name">Capri</p>
@@ -67,8 +144,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-  <!-- 2. Ford Explorer · Leasingfaktor 0,67 -->
-  <div class="card">
+  <div class="card" data-faktor="0.67" data-rate="276.00" data-avail="2">
     <div class="left">
       <p class="car-brand">Ford</p>
       <p class="car-name">Explorer</p>
@@ -86,8 +162,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-  <!-- 3. Cupra Tavascan · Leasingfaktor 0,67 -->
-  <div class="card">
+  <div class="card" data-faktor="0.67" data-rate="347.00" data-avail="2">
     <div class="left">
       <p class="car-brand">Cupra</p>
       <p class="car-name">Tavascan</p>
@@ -105,8 +180,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-  <!-- 4. BMW i4 eDrive40 · Leasingfaktor 0,68 -->
-  <div class="card">
+  <div class="card" data-faktor="0.68" data-rate="357.02" data-avail="2">
     <div class="left">
       <p class="car-brand">BMW</p>
       <p class="car-name">i4 eDrive40</p>
@@ -124,8 +198,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-  <!-- 5. Hyundai KONA Elektro · Leasingfaktor 0,71 -->
-  <div class="card">
+  <div class="card" data-faktor="0.71" data-rate="280.62" data-avail="0">
     <div class="left">
       <p class="car-brand">Hyundai</p>
       <p class="car-name">KONA Elektro</p>
@@ -143,8 +216,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-  <!-- 6. Hyundai IONIQ 5 · Leasingfaktor 0,72 -->
-  <div class="card">
+  <div class="card" data-faktor="0.72" data-rate="283.20" data-avail="0">
     <div class="left">
       <p class="car-brand">Hyundai</p>
       <p class="car-name">IONIQ 5</p>
@@ -170,7 +242,55 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
 
 <script>
 document.getElementById('d').textContent =
-  new Intl.DateTimeFormat('de-DE',{day:'2-digit',month:'long',year:'numeric'}).format(new Date());
+  new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date());
+
+const list    = document.getElementById('cardList');
+const buttons = Array.from(document.querySelectorAll('.sort-btn'));
+
+function fixRadii() {
+  const cards = Array.from(list.children);
+  cards.forEach((c, i) => {
+    const first = i === 0;
+    const last  = i === cards.length - 1;
+    c.style.borderRadius =
+      first && last ? '12px' :
+      first         ? '12px 12px 0 0' :
+      last          ? '0 0 12px 12px' : '0';
+  });
+}
+
+function applySort(key, dir) {
+  const cards = Array.from(list.children);
+  cards.forEach(c => { c._top = c.getBoundingClientRect().top; });
+
+  cards.sort((a, b) => {
+    const av = parseFloat(a.dataset[key]);
+    const bv = parseFloat(b.dataset[key]);
+    return dir === 'asc' ? av - bv : bv - av;
+  });
+  cards.forEach(c => list.appendChild(c));
+  fixRadii();
+
+  cards.forEach(c => {
+    const delta = c._top - c.getBoundingClientRect().top;
+    if (delta === 0) return;
+    c.style.transition = 'none';
+    c.style.transform  = `translateY(${delta}px)`;
+    c.getBoundingClientRect();
+    c.style.transition = 'transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    c.style.transform  = 'translateY(0)';
+  });
+}
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applySort(btn.dataset.key, btn.dataset.dir);
+  });
+});
+
+fixRadii();
 </script>
 </body>
 </html>
