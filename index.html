@@ -124,7 +124,24 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
 
 <div class="cards" id="cardList">
 
-  <!-- data-faktor, data-rate, data-avail: 0=sofort, 1=<2mo, 2=2-5mo, 3=>5mo -->
+  <!-- BMW iX1 (BESTER FAKTOR) -->
+  <div class="card" data-faktor="0.54" data-rate="350.63" data-avail="0">
+    <div class="left">
+      <p class="car-brand">BMW</p>
+      <p class="car-name">iX1 xDrive30 MSportPro</p>
+      <p class="car-variant">Innov ComPak TravPak HUD · 225 kW (306 PS) · Allrad</p>
+      <div class="tags">
+        <span class="tag">24 Monate</span>
+        <span class="tag">15.000 km/Jahr</span>
+        <span class="tag">Leasingfaktor 0,54</span>
+        <span class="tag tag-green">Sofort verfügbar</span>
+      </div>
+    </div>
+    <div class="right">
+      <div><p class="price">350,63 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
+      <a class="link" href="https://www.null-leasing.com/bmw-leasing/angebote/451136679?lsml=%3A15000&lst=c&lstm=%3A24&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+    </div>
+  </div>
 
   <div class="card" data-faktor="0.64" data-rate="276.00" data-avail="3">
     <div class="left">
@@ -184,7 +201,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     <div class="left">
       <p class="car-brand">BMW</p>
       <p class="car-name">i4 eDrive40</p>
-      <p class="car-variant">G26 · 250 kW (340 PS) · 491 km Reichweite · Wärmepumpe · Schnellladung 31 Min.</p>
+      <p class="car-variant">G26 · 250 kW (340 PS) · 491 km Reichweite</p>
       <div class="tags">
         <span class="tag">30 Monate</span>
         <span class="tag">15.000 km/Jahr</span>
@@ -202,7 +219,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     <div class="left">
       <p class="car-brand">Hyundai</p>
       <p class="car-name">KONA Elektro</p>
-      <p class="car-variant">Trend · 65 kWh · 204 PS · 2WD · V2L · Ass-P</p>
+      <p class="car-variant">Trend · 65 kWh · 204 PS · V2L</p>
       <div class="tags">
         <span class="tag">36 Monate</span>
         <span class="tag">15.000 km/Jahr</span>
@@ -216,30 +233,11 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-    <div class="card" data-faktor=„0.54“ data-rate="350.63“
- data-avail="2">
-    <div class="left">
-      <p class="car-brand">BMW</p>
-      <p class="car-name">iX1 xDrive30 MSportPro</p>
-      <p class="car-variant">Innov ComPak TravPak · 225 kW (306 PS) · 430 km Reichweite</p>
-      <div class="tags">
-        <span class="tag">24 Monate</span>
-        <span class="tag">15.000 km/Jahr</span>
-        <span class="tag">Leasingfaktor 0,54</span>
-        <span class="tag tag-green">Sofort verfügbar</span>
-      </div>
-    </div>
-    <div class="right">
-      <div><p class="price">350,63 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
-      <a class="link" href="https://www.null-leasing.com/bmw-leasing/angebote/430751774?lsml=%3A15000&lst=c&lstm=%3A30&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
-    </div>
-  </div>
-
   <div class="card" data-faktor="0.72" data-rate="283.20" data-avail="0">
     <div class="left">
       <p class="car-brand">Hyundai</p>
       <p class="car-name">IONIQ 5</p>
-      <p class="car-variant">FL (MY26) · 63 kWh · 2WD · 125 kW (170 PS) · Wärmepumpe</p>
+      <p class="car-variant">FL (MY26) · 63 kWh · 125 kW (170 PS)</p>
       <div class="tags">
         <span class="tag">48 Monate</span>
         <span class="tag">15.000 km/Jahr</span>
@@ -260,9 +258,9 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
 </footer>
 
 <script>
-document.getElementById('d').textContent = '10. Mai 2026';
+document.getElementById('d').textContent = new Date().toLocaleDateString('de-DE');
 
-const list    = document.getElementById('cardList');
+const list     = document.getElementById('cardList');
 const buttons = Array.from(document.querySelectorAll('.sort-btn'));
 
 function fixRadii() {
@@ -286,6 +284,7 @@ function applySort(key, dir) {
     const bv = parseFloat(b.dataset[key]);
     return dir === 'asc' ? av - bv : bv - av;
   });
+  
   cards.forEach(c => list.appendChild(c));
   fixRadii();
 
@@ -294,8 +293,8 @@ function applySort(key, dir) {
     if (delta === 0) return;
     c.style.transition = 'none';
     c.style.transform  = `translateY(${delta}px)`;
-    c.getBoundingClientRect();
-    c.style.transition = 'transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    c.getBoundingClientRect(); // Trigger reflow
+    c.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     c.style.transform  = 'translateY(0)';
   });
 }
@@ -308,7 +307,8 @@ buttons.forEach(btn => {
   });
 });
 
-fixRadii();
+// Initialer Sort nach Faktor beim Laden
+applySort('faktor', 'asc');
 </script>
 </body>
 </html>
