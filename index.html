@@ -124,25 +124,6 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
 
 <div class="cards" id="cardList">
 
-  <!-- BMW iX1 (BESTER FAKTOR) -->
-  <div class="card" data-faktor="0.54" data-rate="350.63" data-avail="0">
-    <div class="left">
-      <p class="car-brand">BMW</p>
-      <p class="car-name">iX1 xDrive30 MSportPro</p>
-      <p class="car-variant">Innov ComPak TravPak HUD · 225 kW (306 PS) · Allrad</p>
-      <div class="tags">
-        <span class="tag">24 Monate</span>
-        <span class="tag">15.000 km/Jahr</span>
-        <span class="tag">Leasingfaktor 0,54</span>
-        <span class="tag tag-green">Sofort verfügbar</span>
-      </div>
-    </div>
-    <div class="right">
-      <div><p class="price">350,63 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
-      <a class="link" href="https://www.null-leasing.com/bmw-leasing/angebote/451136679?lsml=%3A15000&lst=c&lstm=%3A24&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
-    </div>
-  </div>
-
   <div class="card" data-faktor="0.64" data-rate="276.00" data-avail="3">
     <div class="left">
       <p class="car-brand">Ford</p>
@@ -293,7 +274,7 @@ function applySort(key, dir) {
     if (delta === 0) return;
     c.style.transition = 'none';
     c.style.transform  = `translateY(${delta}px)`;
-    c.getBoundingClientRect(); // Trigger reflow
+    c.getBoundingClientRect();
     c.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     c.style.transform  = 'translateY(0)';
   });
@@ -307,7 +288,6 @@ buttons.forEach(btn => {
   });
 });
 
-// Initialer Sort nach Faktor beim Laden
 applySort('faktor', 'asc');
 </script>
 </body>
