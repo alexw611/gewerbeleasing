@@ -160,7 +160,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
     </div>
   </div>
 
-  <div class="card" data-faktor="0.67" data-rate="330.00" data-avail="0">
+  <div class="card" data-faktor="0.67" data-rate="334.00" data-avail="2">
     <div class="left">
       <p class="car-brand">Cupra</p>
       <p class="car-name">Tavascan</p>
@@ -169,16 +169,32 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
         <span class="tag">48 Monate</span>
         <span class="tag">15.000 km/Jahr</span>
         <span class="tag">Leasingfaktor 0,67</span>
+        <span class="tag tag-amber">Ab 15.07.2026</span>
+      </div>
+    </div>
+    <div class="right">
+      <div><p class="price">334,00 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
+      <a class="link" href="https://www.null-leasing.com/cupra-leasing/angebote/452733918?lsml=%3A15000&lst=c&lstm=%3A48&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+    </div>
+  </div>
+
+  <div class="card" data-faktor="0.76" data-rate="378.82" data-avail="0">
+    <div class="left">
+      <p class="car-brand">Hyundai</p>
+      <p class="car-name">IONIQ 5</p>
+      <p class="car-variant">N Line</p>
+      <div class="tags">
+        <span class="tag">48 Monate</span>
+        <span class="tag">15.000 km/Jahr</span>
+        <span class="tag">Leasingfaktor 0,76</span>
         <span class="tag tag-green">Sofort verfügbar</span>
       </div>
     </div>
     <div class="right">
-      <div><p class="price">330,00 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
-      <a class="link" href="https://www.null-leasing.com/cupra-leasing/angebote/454970101?lsml=%3A15000&lst=c&lstm=%3A48&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
+      <div><p class="price">378,82 €</p><p class="price-note">mtl. zzgl. MwSt.</p></div>
+      <a class="link" href="https://www.null-leasing.com/hyundai-leasing/angebote/452543373?lsml=%3A15000&lst=c&lstm=%3A48&vc=Car" target="_blank" rel="noopener">Zum Angebot →</a>
     </div>
   </div>
-
-
 
 </div>
 
@@ -189,7 +205,7 @@ footer { max-width: 860px; margin: 32px auto 0; font-size: 11px; color: #bbb; }
 <script>
 document.getElementById('d').textContent = new Date().toLocaleDateString('de-DE');
 
-const list     = document.getElementById('cardList');
+const list    = document.getElementById('cardList');
 const buttons = Array.from(document.querySelectorAll('.sort-btn'));
 
 function fixRadii() {
@@ -213,7 +229,7 @@ function applySort(key, dir) {
     const bv = parseFloat(b.dataset[key]);
     return dir === 'asc' ? av - bv : bv - av;
   });
-  
+
   cards.forEach(c => list.appendChild(c));
   fixRadii();
 
